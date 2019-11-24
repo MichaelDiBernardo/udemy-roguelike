@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
         _moveInput.x = Input.GetAxisRaw("Horizontal");
         _moveInput.y = Input.GetAxisRaw("Vertical");
 
-        physics.velocity = _moveInput * moveSpeed;
+        physics.velocity = _moveInput.normalized * moveSpeed;
 
         bool isMoving = _moveInput != Vector2.zero;
         animator.SetBool("isMoving", isMoving);
