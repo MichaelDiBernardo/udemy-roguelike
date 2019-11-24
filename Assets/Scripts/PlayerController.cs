@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public Rigidbody2D physics;
     public Transform gunArm;
+    public Animator animator;
 
     private Vector2 _moveInput;
     private Camera _camera;
@@ -26,6 +27,9 @@ public class PlayerController : MonoBehaviour
         _moveInput.y = Input.GetAxisRaw("Vertical");
 
         physics.velocity = _moveInput * moveSpeed;
+
+        bool isMoving = _moveInput != Vector2.zero;
+        animator.SetBool("isMoving", isMoving);
     }
 
     private void aim()
