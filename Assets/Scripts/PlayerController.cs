@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -6,6 +7,9 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D physics;
     public Transform gunArm;
     public Animator animator;
+
+    public GameObject bulletToFire;
+    public Transform muzzlePoint;
 
     private Vector2 _moveInput;
     private Camera _camera;
@@ -15,10 +19,11 @@ public class PlayerController : MonoBehaviour
         _camera = Camera.main;
     }
 
-    void Update()
+    void Update() 
     {
         move();
         aim();
+        shoot();
     }
 
     private void move()
@@ -51,5 +56,13 @@ public class PlayerController : MonoBehaviour
 
         float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
         gunArm.rotation = Quaternion.Euler(0f, 0f, angle);
+    }
+
+    private void shoot()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(bulletToFire, muzzlePoint.position, muzzlePoint.rotation);
+        }
     }
 }
