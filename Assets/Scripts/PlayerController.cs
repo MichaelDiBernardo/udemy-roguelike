@@ -11,8 +11,12 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletToFire;
     public Transform muzzlePoint;
 
+    public float timeBetweenShots;
+
     private Vector2 _moveInput;
     private Camera _camera;
+
+    private float shotTimer;
 
     void Start()
     {
@@ -60,9 +64,19 @@ public class PlayerController : MonoBehaviour
 
     private void shoot()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!Input.GetMouseButton(0))
         {
-            Instantiate(bulletToFire, muzzlePoint.position, muzzlePoint.rotation);
+            return;
         }
+        
+        shotTimer -= Time.deltaTime;
+
+        if (shotTimer > 0f)
+        {
+            return;
+        }
+
+        shotTimer = timeBetweenShots;
+        Instantiate(bulletToFire, muzzlePoint.position, muzzlePoint.rotation);
     }
 }
