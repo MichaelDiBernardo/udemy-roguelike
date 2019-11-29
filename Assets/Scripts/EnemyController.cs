@@ -5,10 +5,12 @@ public class EnemyController : MonoBehaviour
     public Rigidbody2D physics;
     public Animator animator;
 
+    public GameObject[] deathSprites;
+
     public float moveSpeed;
     public float rangeToChasePlayer;
 
-    public int health;
+    public int health;    
 
     void Start()
     {        
@@ -35,9 +37,19 @@ public class EnemyController : MonoBehaviour
     {
         health -= damage;
 
-        if (health <= 0)
+        if (health > 0)
         {
-            Destroy(gameObject);
+            return;          
         }
+
+        int splatterIndex = Random.Range(0, deathSprites.Length);
+        int rotation = Random.Range(0, 4);
+
+        Destroy(gameObject);
+        Instantiate(
+            deathSprites[splatterIndex],
+            transform.position,
+            Quaternion.Euler(0, 0, rotation * 90f)
+        );              
     }
 }

@@ -489,7 +489,7 @@ GameObject:
   - component: {fileID: 1267519442}
   m_Layer: 0
   m_Name: Hand
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -570,9 +570,10 @@ GameObject:
   - component: {fileID: 1358454611}
   - component: {fileID: 1358454610}
   - component: {fileID: 1358454609}
+  - component: {fileID: 1358454613}
   m_Layer: 0
   m_Name: Enemy - Skeleton
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -637,8 +638,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   physics: {fileID: 1358454610}
+  animator: {fileID: 1358454613}
+  deathSprites:
+  - {fileID: 2563421510259255344, guid: 3bd5602350b32452f8f69c477197a0a5, type: 3}
+  - {fileID: 4909173474914927614, guid: 41f020d0a5fea44a4b344ae46c76003b, type: 3}
+  - {fileID: 2938155392684464167, guid: e19c1af1c511c4c8b8f19be137136084, type: 3}
+  - {fileID: 6420521339403482032, guid: 142982e8248b649c1bf430bd1d62a96e, type: 3}
   moveSpeed: 3
   rangeToChasePlayer: 7
+  health: 150
 --- !u!4 &1358454612
 Transform:
   m_ObjectHideFlags: 0
@@ -654,6 +662,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1358454613
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358454608}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b2ad0dcc31f864421a6f3b130a4cb165, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2085441359
 GameObject:
   m_ObjectHideFlags: 0
