@@ -3,6 +3,7 @@
 public class EnemyController : MonoBehaviour
 {
     public Rigidbody2D physics;
+    public Animator animator;
     public float moveSpeed;
     public float rangeToChasePlayer;     
 
@@ -18,10 +19,12 @@ public class EnemyController : MonoBehaviour
         if (playerDir.magnitude <= rangeToChasePlayer)
         {
             physics.velocity = playerDir.normalized * moveSpeed;
+            animator.SetBool("isMoving", true);
         }
         else
         {
             physics.velocity = Vector3.zero;
+            animator.SetBool("isMoving", false);
         }        
     }
 }
