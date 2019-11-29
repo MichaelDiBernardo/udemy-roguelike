@@ -6,6 +6,7 @@ public class PlayerBullet : MonoBehaviour
     public Rigidbody2D physics;
 
     public GameObject impactEffect;
+    public int attackPower = 50;
 
     void Start()
     {
@@ -26,5 +27,10 @@ public class PlayerBullet : MonoBehaviour
     {
         Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(gameObject);
+
+        if (other.CompareTag("Enemy"))
+        {
+            other.GetComponent<EnemyController>().DamageEnemy(attackPower);
+        }
     }
 }

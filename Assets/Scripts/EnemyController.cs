@@ -4,8 +4,11 @@ public class EnemyController : MonoBehaviour
 {
     public Rigidbody2D physics;
     public Animator animator;
+
     public float moveSpeed;
-    public float rangeToChasePlayer;     
+    public float rangeToChasePlayer;
+
+    public int health;
 
     void Start()
     {        
@@ -26,5 +29,15 @@ public class EnemyController : MonoBehaviour
             physics.velocity = Vector3.zero;
             animator.SetBool("isMoving", false);
         }        
+    }
+
+    public void DamageEnemy(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
