@@ -15,8 +15,10 @@ public class EnemyController : MonoBehaviour
 
     public bool shouldShoot;
     public float fireRate;
+    public float shootRange;
+
     public GameObject bullet;
-    public Transform muzzlePoint;
+    public Transform muzzlePoint;    
 
     private FrameTimer _shotTimer;
 
@@ -43,6 +45,17 @@ public class EnemyController : MonoBehaviour
 
         if (!shouldShoot)
         {
+            return;
+        }
+
+        float playerDistance = Vector3.Distance(
+            transform.position,
+            PlayerController.instance.transform.position
+        );
+
+        if (playerDistance > shootRange)
+        {
+            _shotTimer.Reset();
             return;
         }
                 
