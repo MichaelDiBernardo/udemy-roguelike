@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 _moveInput;
     private Camera _camera;
 
-    private float shotTimer;
+    private FrameTimer _shotTimer;
 
     private void Awake()
     {
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _camera = Camera.main;
+        _shotTimer = new FrameTimer(timeBetweenShots, true);
     }
 
     void Update() 
@@ -69,20 +70,16 @@ public class PlayerController : MonoBehaviour
     }
 
     private void shoot()
-    {
+    {   
         if (!Input.GetMouseButton(0))
         {
+            _shotTimer.Reset();
             return;
         }
-        
-        shotTimer -= Time.deltaTime;
 
-        if (shotTimer > 0f)
+        if (_shotTimer.CheckThisFrame())
         {
-            return;
-        }
-
-        shotTimer = timeBetweenShots;
-        Instantiate(bulletToFire, muzzlePoint.position, muzzlePoint.rotation);
+            Instantiate(bulletToFire, muzzlePoint.position, muzzlePoint.rotation);
+        }        
     }
 }

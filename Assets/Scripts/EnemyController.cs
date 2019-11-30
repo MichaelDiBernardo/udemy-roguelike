@@ -11,10 +11,18 @@ public class EnemyController : MonoBehaviour
     public float moveSpeed;
     public float rangeToChasePlayer;
 
-    public int health;    
+    public int health;
+
+    public bool shouldShoot;
+    public float fireRate;
+    public GameObject bullet;
+    public Transform muzzlePoint;
+
+    private FrameTimer _shotTimer;
 
     void Start()
-    {        
+    {
+        _shotTimer = new FrameTimer(fireRate, true);    
     }
 
     void Update()
@@ -31,6 +39,16 @@ public class EnemyController : MonoBehaviour
         {
             physics.velocity = Vector3.zero;
             animator.SetBool("isMoving", false);
+        }
+
+        if (!shouldShoot)
+        {
+            return;
+        }
+                
+        if (_shotTimer.CheckThisFrame())
+        {            
+            Instantiate(bullet, transform.position, transform.rotation);
         }        
     }
 
