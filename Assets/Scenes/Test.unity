@@ -624,7 +624,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1358454611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,6 +644,8 @@ MonoBehaviour:
   - {fileID: 4909173474914927614, guid: 41f020d0a5fea44a4b344ae46c76003b, type: 3}
   - {fileID: 2938155392684464167, guid: e19c1af1c511c4c8b8f19be137136084, type: 3}
   - {fileID: 6420521339403482032, guid: 142982e8248b649c1bf430bd1d62a96e, type: 3}
+  damageEffect: {fileID: 5249991076012963361, guid: 1423e99fd3883475a802f09bb951820b,
+    type: 3}
   moveSpeed: 3
   rangeToChasePlayer: 7
   health: 150
@@ -840,7 +842,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &2129979348
 CircleCollider2D:
   m_ObjectHideFlags: 0

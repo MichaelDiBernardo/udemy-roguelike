@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
     public Animator animator;
 
     public GameObject[] deathSprites;
+    public GameObject damageEffect;
 
     public float moveSpeed;
     public float rangeToChasePlayer;
@@ -36,6 +37,7 @@ public class EnemyController : MonoBehaviour
     public void DamageEnemy(int damage)
     {
         health -= damage;
+        Instantiate(damageEffect, transform.position, transform.rotation);
 
         if (health > 0)
         {

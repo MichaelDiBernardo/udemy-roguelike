@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
-{
-    public float speed = 7.5f;
+{    
     public Rigidbody2D physics;
+    public GameObject impactEffect;    
 
-    public GameObject impactEffect;
+    public float speed = 7.5f;
     public int attackPower = 50;
 
     void Start()
@@ -25,12 +25,16 @@ public class PlayerBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Instantiate(impactEffect, transform.position, transform.rotation);
+        
         Destroy(gameObject);
 
         if (other.CompareTag("Enemy"))
+        {            
+            other.GetComponent<EnemyController>().DamageEnemy(attackPower);            
+        }
+        else
         {
-            other.GetComponent<EnemyController>().DamageEnemy(attackPower);
+            Instantiate(impactEffect, transform.position, transform.rotation);
         }
     }
 }

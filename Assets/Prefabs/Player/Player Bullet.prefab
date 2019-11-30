@@ -96,10 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005d37cab4ce645df8daf9f0d134a92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7.5
   physics: {fileID: 174713201453832956}
   impactEffect: {fileID: 6453490088278933014, guid: f7ae4fae4543b4f2da23755006ff96b0,
     type: 3}
+  enemyDamageEffect: {fileID: 5249991076012963361, guid: 1423e99fd3883475a802f09bb951820b,
+    type: 3}
+  speed: 7.5
+  attackPower: 50
 --- !u!61 &174713201453832957
 BoxCollider2D:
   m_ObjectHideFlags: 0
