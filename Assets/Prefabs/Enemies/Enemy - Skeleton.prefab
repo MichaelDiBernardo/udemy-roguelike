@@ -143,7 +143,7 @@ MonoBehaviour:
   health: 150
   shouldShoot: 1
   fireRate: 0.5
-  bullet: {fileID: 2563421510259255344, guid: 3bd5602350b32452f8f69c477197a0a5, type: 3}
+  bullet: {fileID: 5353859373205962889, guid: c5d803ec9e70f453b8ec43380252c5fc, type: 3}
   muzzlePoint: {fileID: 3678814392878337212}
 --- !u!50 &3010017021310050799
 Rigidbody2D:

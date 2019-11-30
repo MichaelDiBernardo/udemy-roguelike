@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
                 
         if (_shotTimer.CheckThisFrame())
         {            
-            Instantiate(bullet, transform.position, transform.rotation);
+            Instantiate(bullet, muzzlePoint.position, muzzlePoint.rotation);
         }        
     }
 
