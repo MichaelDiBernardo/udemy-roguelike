@@ -18,7 +18,9 @@ public class EnemyController : MonoBehaviour
     public float shootRange;
 
     public GameObject bullet;
-    public Transform muzzlePoint;    
+    public Transform muzzlePoint;
+
+    public SpriteRenderer theBody;
 
     private FrameTimer _shotTimer;
 
@@ -29,6 +31,12 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        if (!theBody.isVisible || !PlayerController.instance.gameObject.activeInHierarchy)
+        {
+            physics.velocity = Vector3.zero;
+            return;
+        }
+            
         Vector3 playerPos = PlayerController.instance.transform.position;
         Vector3 playerDir = playerPos - transform.position;
       
