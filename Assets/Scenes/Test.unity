@@ -942,6 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 5
+  invulnDuration: 1
 --- !u!4 &926388437
 Transform:
   m_ObjectHideFlags: 0
@@ -2040,6 +2041,7 @@ MonoBehaviour:
   physics: {fileID: 2129979347}
   gunArm: {fileID: 380332156}
   animator: {fileID: 2129979349}
+  bodyRenderer: {fileID: 2085441360}
   bulletToFire: {fileID: 174713201453832953, guid: 8ba2b744822b94a6a8259394d5caa456,
     type: 3}
   muzzlePoint: {fileID: 540742594}

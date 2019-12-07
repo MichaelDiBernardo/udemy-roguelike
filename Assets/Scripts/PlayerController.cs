@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D physics;
     public Transform gunArm;
     public Animator animator;
+    public SpriteRenderer bodyRenderer;
 
     public GameObject bulletToFire;
     public Transform muzzlePoint;
