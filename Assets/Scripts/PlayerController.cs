@@ -5,6 +5,12 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
 
     public float moveSpeed;
+
+    public float dashSpeed;
+    public float dashDuration;
+    public float dashCooldown;
+    public float dashInvincibility;
+
     public Rigidbody2D physics;
     public Transform gunArm;
     public Animator animator;
@@ -19,6 +25,10 @@ public class PlayerController : MonoBehaviour
     private Camera _camera;
 
     private FrameTimer _shotTimer;
+    private FrameTimer _dashTimer;
+    private FrameTimer _dashCooldownTimer;
+
+    private float _currentMoveSpeed;
 
     private void Awake()
     {
@@ -29,21 +39,43 @@ public class PlayerController : MonoBehaviour
     {
         _camera = Camera.main;
         _shotTimer = new FrameTimer(timeBetweenShots, true);
+        _dashCooldownTimer = new FrameTimer(dashCooldown, true);
+        _currentMoveSpeed = moveSpeed;
     }
 
     void Update() 
     {
+        dash();
         move();
         aim();
         shoot();
     }
 
+    private void dash()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && _dashTimer == null && _dashCooldownTimer.CheckThisFrame())
+        {
+            _currentMoveSpeed = dashSpeed;
+            _dashTimer = new FrameTimer(dashDuration, false);
+        }
+
+        if (_dashTimer != null && _dashTimer.CheckThisFrame())
+        {
+            _currentMoveSpeed = moveSpeed;
+            _dashTimer = null;
+            _dashCooldownTimer.Reset();
+        }
+    }
+
     private void move()
     {
-        _moveInput.x = Input.GetAxisRaw("Horizontal");
-        _moveInput.y = Input.GetAxisRaw("Vertical");
+        if (_dashTimer == null)
+        {
+            _moveInput.x = Input.GetAxisRaw("Horizontal");
+            _moveInput.y = Input.GetAxisRaw("Vertical");
+        }
 
-        physics.velocity = _moveInput.normalized * moveSpeed;
+        physics.velocity = _moveInput.normalized * _currentMoveSpeed;
 
         bool isMoving = _moveInput != Vector2.zero;
         animator.SetBool("isMoving", isMoving);
