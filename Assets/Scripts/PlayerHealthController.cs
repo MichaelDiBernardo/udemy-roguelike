@@ -50,10 +50,7 @@ public class PlayerHealthController : MonoBehaviour
             UIController.instance.deathScreen.SetActive(true);
         }
 
-        _invulnTimer = new FrameTimer(invulnDuration, false);
-
-        Color pc = PlayerController.instance.bodyRenderer.color;
-        PlayerController.instance.bodyRenderer.color = new Color(pc.r, pc.g, pc.r, 0.5f);
+        MakeInvulnerable(invulnDuration, true);        
 
         updateHealthUI();
     }
@@ -61,6 +58,23 @@ public class PlayerHealthController : MonoBehaviour
     public bool isInvulnerable
     {
         get { return _invulnTimer != null; }
+    }
+
+    public void MakeInvulnerable(float time, bool showIt)
+    {
+        if (isInvulnerable)
+        {
+            time = Mathf.Max(time, _invulnTimer.TimeLeft);
+        }
+        _invulnTimer = new FrameTimer(time, false);
+
+        if (!showIt)
+        {
+            return;
+        }
+
+        Color pc = PlayerController.instance.bodyRenderer.color;
+        PlayerController.instance.bodyRenderer.color = new Color(pc.r, pc.g, pc.r, 0.5f);
     }
 
     private void updateHealthUI()

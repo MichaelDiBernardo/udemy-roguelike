@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed;
     public float dashDuration;
     public float dashCooldown;
-    public float dashInvincibility;
+    public float dashInvulnDuration;
 
     public Rigidbody2D physics;
     public Transform gunArm;
@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
             _currentMoveSpeed = dashSpeed;
             _dashTimer = new FrameTimer(dashDuration, false);
             animator.SetTrigger("dash");
+            PlayerHealthController.instance.MakeInvulnerable(dashInvulnDuration, false);
         }
 
         if (_dashTimer != null && _dashTimer.CheckThisFrame())
@@ -115,5 +116,10 @@ public class PlayerController : MonoBehaviour
         {
             Instantiate(bulletToFire, muzzlePoint.position, muzzlePoint.rotation);
         }        
+    }
+
+    public bool IsDashing
+    {
+        get { return _dashTimer != null; } 
     }
 }

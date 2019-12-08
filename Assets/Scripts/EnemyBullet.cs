@@ -20,11 +20,21 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        bool destroyMe = true;
         if (other.CompareTag("Player"))
         {
             PlayerHealthController.instance.DamagePlayer();
-        }        
-        Destroy(gameObject);
+            if (PlayerController.instance.IsDashing)
+            {
+                destroyMe = false;
+            }
+        }
+
+        if (destroyMe)
+        {
+            Destroy(gameObject);
+        }
+        
     }
 
     private void OnBecameInvisible()

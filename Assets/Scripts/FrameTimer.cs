@@ -41,4 +41,9 @@ public class FrameTimer
         }
         
     }
+
+    public float TimeLeft
+    {
+        get { return _counter; }
+    }
 }
