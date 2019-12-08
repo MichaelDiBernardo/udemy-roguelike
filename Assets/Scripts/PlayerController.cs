@@ -57,13 +57,14 @@ public class PlayerController : MonoBehaviour
         {
             _currentMoveSpeed = dashSpeed;
             _dashTimer = new FrameTimer(dashDuration, false);
+            animator.SetTrigger("dash");
         }
 
         if (_dashTimer != null && _dashTimer.CheckThisFrame())
         {
             _currentMoveSpeed = moveSpeed;
             _dashTimer = null;
-            _dashCooldownTimer.Reset();
+            _dashCooldownTimer.Reset();            
         }
     }
 
