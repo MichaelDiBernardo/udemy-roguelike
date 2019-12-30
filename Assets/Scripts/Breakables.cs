@@ -24,10 +24,10 @@ public class Breakables : MonoBehaviour
             Destroy(gameObject);
 
             int piecesToDrop = Random.Range(1, maxShrapnel + 1);
-            int randomPiece = Random.Range(0, brokenPieces.Length);
 
             for (int i=0; i<piecesToDrop; i++)
             {
+                int randomPiece = Random.Range(0, brokenPieces.Length);
                 Instantiate(brokenPieces[randomPiece], transform.position, transform.rotation);
             }
             
