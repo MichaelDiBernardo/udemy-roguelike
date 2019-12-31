@@ -29,6 +29,7 @@ public class Shrapnel : MonoBehaviour
 
         lifetime -= Time.deltaTime;
 
+        // TODO: Practice using coroutines here again.
         if (lifetime <= 0f)
         {
             float a = Mathf.MoveTowards(theSR.color.a, 0f, fadeSpeed * Time.deltaTime);
