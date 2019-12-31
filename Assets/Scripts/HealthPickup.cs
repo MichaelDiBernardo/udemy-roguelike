@@ -1,28 +1,19 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
     public int healAmount = 1;
-    public float timeBeforeCollectable = 0.5f;
-
-    private FrameTimer _collectTimer;
+    public float timeBeforeCollectable = 0.5f;    
     private bool _isCollectable = false;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
-        _collectTimer = new FrameTimer(timeBeforeCollectable, false);
+        StartCoroutine(SetCollectable(timeBeforeCollectable));
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (_isCollectable)
-        {
-            return;
-        }
-
-        _isCollectable = _collectTimer.CheckThisFrame();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -32,5 +23,11 @@ public class HealthPickup : MonoBehaviour
             PlayerHealthController.instance.HealPlayer(healAmount);
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator SetCollectable(float afterSeconds)
+    {
+        yield return new WaitForSeconds(afterSeconds);
+        _isCollectable = true;
     }
 }
