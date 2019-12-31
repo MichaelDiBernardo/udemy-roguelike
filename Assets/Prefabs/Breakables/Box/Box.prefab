@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6677785923197979282}
   - component: {fileID: 6677785923197979284}
   - component: {fileID: 6677785923197979287}
+  - component: {fileID: 6546223094084099904}
   m_Layer: 0
   m_Name: Box
   m_TagString: Untagged
@@ -129,3 +130,15 @@ MonoBehaviour:
   - {fileID: 1703662721958877908, guid: 55a8aea003beb4010ad69dab8f3034c7, type: 3}
   - {fileID: 8061748055088954557, guid: 621a0a23d56b54fd980944162e6f53a1, type: 3}
   maxShrapnel: 5
+--- !u!114 &6546223094084099904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6677785923197979283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5fc56231b43f48c6b79cc36d49125f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
