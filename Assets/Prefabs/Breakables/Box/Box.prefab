@@ -130,6 +130,10 @@ MonoBehaviour:
   - {fileID: 1703662721958877908, guid: 55a8aea003beb4010ad69dab8f3034c7, type: 3}
   - {fileID: 8061748055088954557, guid: 621a0a23d56b54fd980944162e6f53a1, type: 3}
   maxShrapnel: 5
+  drops:
+  - {fileID: 8187724717812756097, guid: 168543c5f068043faa4ab4cc24469cbe, type: 3}
+  - {fileID: 3385751570550853764, guid: 948eb9883f92f4331b629fd49bb1c4f5, type: 3}
+  dropPercent: 35
 --- !u!114 &6546223094084099904
 MonoBehaviour:
   m_ObjectHideFlags: 0
