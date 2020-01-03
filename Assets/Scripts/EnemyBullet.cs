@@ -7,7 +7,7 @@ public class EnemyBullet : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {       
         direction = PlayerController.instance.transform.position - transform.position;
         direction.Normalize();
     }
@@ -20,6 +20,7 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // TODO: Why aren't enemy bullets colliding with scenery? Must be a component issue.
         bool destroyMe = true;
         if (other.CompareTag("Player"))
         {
@@ -32,6 +33,7 @@ public class EnemyBullet : MonoBehaviour
 
         if (destroyMe)
         {
+            AudioManager.instance.PlaySFX(SoundEffect.Impact);
             Destroy(gameObject);
         }
         

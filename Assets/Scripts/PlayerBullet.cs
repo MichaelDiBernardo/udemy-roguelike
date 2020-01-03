@@ -34,6 +34,7 @@ public class PlayerBullet : MonoBehaviour
         }
         else
         {
+            AudioManager.instance.PlaySFX(SoundEffect.Impact);
             Instantiate(impactEffect, transform.position, transform.rotation);
         }
     }

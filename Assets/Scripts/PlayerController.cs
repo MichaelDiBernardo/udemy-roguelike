@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && _dashTimer == null && _dashCooldownTimer.CheckThisFrame())
         {
+            AudioManager.instance.PlaySFX(SoundEffect.PlayerDash);
             _currentMoveSpeed = dashSpeed;
             _dashTimer = new FrameTimer(dashDuration, false);
             animator.SetTrigger("dash");
@@ -114,6 +115,7 @@ public class PlayerController : MonoBehaviour
 
         if (_shotTimer.CheckThisFrame())
         {
+            AudioManager.instance.PlaySFX(SoundEffect.Shoot1);
             Instantiate(bulletToFire, muzzlePoint.position, muzzlePoint.rotation);
         }        
     }

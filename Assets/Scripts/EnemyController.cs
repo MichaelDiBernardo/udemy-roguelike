@@ -68,7 +68,8 @@ public class EnemyController : MonoBehaviour
         }
                 
         if (_shotTimer.CheckThisFrame())
-        {            
+        {
+            AudioManager.instance.PlaySFX(SoundEffect.Shoot2);
             Instantiate(bullet, muzzlePoint.position, muzzlePoint.rotation);
         }        
     }
@@ -80,12 +81,14 @@ public class EnemyController : MonoBehaviour
 
         if (health > 0)
         {
+            AudioManager.instance.PlaySFX(SoundEffect.EnemyHurt);
             return;          
         }
 
         int splatterIndex = Random.Range(0, deathSprites.Length);
         int rotation = Random.Range(0, 4);
 
+        AudioManager.instance.PlaySFX(SoundEffect.EnemyDeath);
         Destroy(gameObject);
         Instantiate(
             deathSprites[splatterIndex],

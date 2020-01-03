@@ -26,7 +26,8 @@ public class Breakables : MonoBehaviour
     {
         if (other.CompareTag("Player") && PlayerController.instance.IsDashing)
         {
-            Destroy(gameObject);
+            AudioManager.instance.PlaySFX(SoundEffect.BoxBreaking);
+            Destroy(gameObject);            
             BlowUp();
             MaybeDropItem();
         }

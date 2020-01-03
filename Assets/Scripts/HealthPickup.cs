@@ -20,6 +20,7 @@ public class HealthPickup : MonoBehaviour
     {
         if (other.CompareTag("Player") && _isCollectable)
         {
+            AudioManager.instance.PlaySFX(SoundEffect.PickupHealth);
             PlayerHealthController.instance.HealPlayer(healAmount);
             Destroy(gameObject);
         }
