@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8566466688305885984}
   - component: {fileID: 5955916422541058900}
   - component: {fileID: -821897945999775496}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Box Shrapnel 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}

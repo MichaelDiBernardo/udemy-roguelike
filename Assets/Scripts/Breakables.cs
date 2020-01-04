@@ -24,7 +24,8 @@ public class Breakables : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && PlayerController.instance.IsDashing)
+        if (other.CompareTag("PlayerBullet") ||
+            other.CompareTag("Player") && PlayerController.instance.IsDashing)
         {
             AudioManager.instance.PlaySFX(SoundEffect.BoxBreaking);
             Destroy(gameObject);            
