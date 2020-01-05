@@ -8,26 +8,19 @@ public class Room : MonoBehaviour
 
     public GameObject[] doors;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player"))
         {
-            CameraController.instance.SetTarget(transform.position);
+            return;
         }
 
+        MoveCameraToHere();
+        MaybeActivateDoors();
+    }
+
+    private void MaybeActivateDoors()
+    {
         if (!doorsCloseOnEnter)
         {
             return;
@@ -37,5 +30,10 @@ public class Room : MonoBehaviour
         {
             door.SetActive(true);
         }
+    }
+
+    private void MoveCameraToHere()
+    {
+        CameraController.instance.SetTarget(transform.position);
     }
 }
