@@ -9,13 +9,11 @@ public class Room : MonoBehaviour
 
     public GameObject[] doors;
 
-    public List<GameObject> enemies = new List<GameObject>();
-
-    private bool _playerInRoom;
+    public List<GameObject> enemies = new List<GameObject>();    
 
     void Update()
     {
-        if (!_playerInRoom || !openWhenEnemiesClear)
+        if (!openWhenEnemiesClear)
         {
             return;
         }
@@ -41,19 +39,9 @@ public class Room : MonoBehaviour
         {
             return;
         }
-
-        _playerInRoom = true;
         MoveCameraToHere();
         MaybeActivateDoors();
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _playerInRoom = false;
-        }
-    }
+    }   
 
     private void MaybeActivateDoors()
     {
