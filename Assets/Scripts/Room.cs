@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ public class Room : MonoBehaviour
 
     void Update()
     {
-        if (!openWhenEnemiesClear)
+        if (!(PlayerIsHere() && openWhenEnemiesClear))
         {
             return;
         }
@@ -39,6 +40,8 @@ public class Room : MonoBehaviour
         {
             return;
         }
+
+        LevelManager.instance.CurrentRoom = this;
         MoveCameraToHere();
         MaybeActivateDoors();
     }   
@@ -68,5 +71,10 @@ public class Room : MonoBehaviour
             door.SetActive(false);
         }
         doorsCloseOnEnter = false;
+    }
+
+    private bool PlayerIsHere()
+    {
+        return LevelManager.instance.CurrentRoom == this;
     }
 }
