@@ -45,6 +45,8 @@ public class UIController : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
 
+        // Paranoia: If the alpha isn't precisely 0 or 1 because of floating-point math,
+        // just force-set it before leaving it behind.
         levelFader.color = new Color(old.r, old.g, old.b, end);        
     }    
 }
