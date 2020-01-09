@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
     public Transform muzzlePoint;
 
     public float timeBetweenShots;
-
     private Vector2 _moveInput;
     private Camera _camera;
 
@@ -29,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private FrameTimer _dashCooldownTimer;
 
     private float _currentMoveSpeed;
+    private bool canMove = true;
 
     private void Awake()
     {
@@ -43,8 +43,13 @@ public class PlayerController : MonoBehaviour
         _currentMoveSpeed = moveSpeed;
     }
 
-    void Update() 
+    void Update()
     {
+        if (!CanMove)
+        {
+            return;
+        }
+
         dash();
         move();
         aim();
@@ -66,7 +71,7 @@ public class PlayerController : MonoBehaviour
         {
             _currentMoveSpeed = moveSpeed;
             _dashTimer = null;
-            _dashCooldownTimer.Reset();            
+            _dashCooldownTimer.Reset();
         }
     }
 
@@ -106,7 +111,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void shoot()
-    {   
+    {
         if (!Input.GetMouseButton(0))
         {
             _shotTimer.Reset();
@@ -117,11 +122,22 @@ public class PlayerController : MonoBehaviour
         {
             AudioManager.instance.PlaySFX(SoundEffect.Shoot1);
             Instantiate(bulletToFire, muzzlePoint.position, muzzlePoint.rotation);
-        }        
+        }
     }
 
     public bool IsDashing
     {
-        get { return _dashTimer != null; } 
+        get { return _dashTimer != null; }
+    }
+
+    public bool CanMove
+    {
+        get => canMove;
+        set
+        {
+            physics.velocity = Vector2.zero;
+            animator.SetBool("isMoving", false);
+            canMove = value;
+        }
     }
 }

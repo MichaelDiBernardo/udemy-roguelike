@@ -17,6 +17,11 @@ public class LevelManager : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        UIController.instance.FadeLevelIn();
+    }
+
     public void EndLevel()
     {
         StartCoroutine(SwitchLevels(nextLevel));
@@ -24,8 +29,12 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator SwitchLevels(string levelName)
     {
-        AudioManager.instance.PlayWinLevel();
+        AudioManager.instance.PlayWinLevel();        
+        UIController.instance.FadeLevelOut();
+        PlayerController.instance.CanMove = false;
+
         yield return new WaitForSeconds(delayBetweenLevels);
-        SceneManager.LoadScene(levelName);
+
+        SceneManager.LoadScene(levelName);        
     }
 }
