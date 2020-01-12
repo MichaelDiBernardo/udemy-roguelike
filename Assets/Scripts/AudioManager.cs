@@ -23,8 +23,7 @@ public enum SoundEffect
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    public AudioSource levelMusic;
-    public AudioSource gameOverMusic;
+    public AudioSource levelMusic;    
     public AudioSource winMusic;
 
     public AudioSource[] sfx;
@@ -42,12 +41,6 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
-    }
-
-    public void PlayGameOver()
-    {
-        levelMusic.Stop();
-        gameOverMusic.Play();
     }
 
     public void PlayWinLevel()

@@ -46,10 +46,8 @@ public class PlayerHealthController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            PlayerController.instance.gameObject.SetActive(false);
-            UIController.instance.deathScreen.SetActive(true);
-            AudioManager.instance.PlaySFX(SoundEffect.PlayerDeath);
-            AudioManager.instance.PlayGameOver();
+            PlayerController.instance.gameObject.SetActive(false);                        
+            LevelManager.instance.GameOver();
         }
         else
         {

@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
 
     public float delayBetweenLevels = 4f;
 
-    public string nextLevel; 
+    public string nextLevel, gameOverScene; 
 
     public Room CurrentRoom { get; set; }
 
@@ -52,6 +52,11 @@ public class LevelManager : MonoBehaviour
             IsPaused = true;
             Time.timeScale = 0f;
         }        
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene(gameOverScene);
     }
 
     private IEnumerator SwitchLevels(string levelName)

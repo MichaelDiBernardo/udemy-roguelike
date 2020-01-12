@@ -2417,7 +2417,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelMusic: {fileID: 1222889283}
-  gameOverMusic: {fileID: 2055192783}
   winMusic: {fileID: 2087440025}
   sfx:
   - {fileID: 825392685}
@@ -2455,6 +2454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delayBetweenLevels: 4
   nextLevel: Victory
+  gameOverScene: Game Over
 --- !u!1001 &942687978
 PrefabInstance:
   m_ObjectHideFlags: 0

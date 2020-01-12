@@ -6,13 +6,12 @@ using UnityEngine.SceneManagement;
 public class UIController : MonoBehaviour
 {
     public Slider healthSlider;
-    public Text healthText;
-    public GameObject deathScreen;
+    public Text healthText;    
 
     public Image levelFader;
     public float levelFadeTime;
 
-    public string restartGameScene, mainMenuScene;
+    public string mainMenuScene;
 
     public GameObject pauseMenu;
 
@@ -31,11 +30,6 @@ public class UIController : MonoBehaviour
     public void FadeLevelOut()
     {
         StartCoroutine(Fader(true));
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(restartGameScene);
     }
 
     public void ReturnToMainMenu()
@@ -57,6 +51,7 @@ public class UIController : MonoBehaviour
     {
         LevelManager.instance.TogglePaused();
     }
+
     private IEnumerator Fader(bool toBlack)
     {
         float increment = 0.05f;
