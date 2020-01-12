@@ -14,6 +14,8 @@ public class UIController : MonoBehaviour
 
     public string restartGameScene, mainMenuScene;
 
+    public GameObject pauseMenu;
+
     public static UIController instance;
 
     private void Awake()
@@ -41,6 +43,20 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene(mainMenuScene);
     }
 
+    public void ShowPauseScreen()
+    {
+        pauseMenu.SetActive(true);
+    }
+
+    public void HidePauseScreen()
+    {
+        pauseMenu.SetActive(false);
+    }
+
+    public void ResumeFromPause()
+    {
+        LevelManager.instance.TogglePaused();
+    }
     private IEnumerator Fader(bool toBlack)
     {
         float increment = 0.05f;

@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!CanMove)
+        if (!CanMove || LevelManager.instance.IsPaused)
         {
             return;
         }
