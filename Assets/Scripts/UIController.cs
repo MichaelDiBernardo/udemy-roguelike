@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class UIController : MonoBehaviour
     public GameObject deathScreen;
 
     public Image levelFader;
-    public float levelFadeTime;    
+    public float levelFadeTime;
+
+    public string restartGameScene, mainMenuScene;
 
     public static UIController instance;
 
@@ -26,6 +29,16 @@ public class UIController : MonoBehaviour
     public void FadeLevelOut()
     {
         StartCoroutine(Fader(true));
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(restartGameScene);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(mainMenuScene);
     }
 
     private IEnumerator Fader(bool toBlack)
