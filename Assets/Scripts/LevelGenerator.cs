@@ -15,12 +15,11 @@ public class LevelGenerator : MonoBehaviour
     public Transform currentCenter;
 
     public LayerMask roomLayoutCollider;
-
-    public int numTriesToPlaceRoom;
-
+   
+    // A list of all the rooms except the start and end rooms.
     private List<GameObject> rooms = new List<GameObject>();
-
     private int numRooms;
+
     private enum CardinalDirection { North, East, South, West };    
 
     private void Awake()
@@ -34,24 +33,14 @@ public class LevelGenerator : MonoBehaviour
     }
 
     private void GenerateLevel()
-    {
-        Debug.Log("Starting level generation!");
-
+    {        
         PlaceRoom(0);
 
         for (int i = 1; i < numRooms; i++)
-        {            
-            try
-            {
-                Vector3 nextCenter = ChooseCenter(currentCenter.position, numTriesToPlaceRoom);
-                currentCenter.position = nextCenter;
-                PlaceRoom(i);
-            }
-            catch (CouldNotGenerateLevelException)
-            {
-                Debug.Log("Restarting level generation...");
-                ResetLevelGeneration();
-            }             
+        {                 
+            Vector3 nextCenter = ChooseCenter(currentCenter.position);
+            currentCenter.position = nextCenter;
+            PlaceRoom(i);                   
         }
     }
 
@@ -63,6 +52,7 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    // Place the ith room at `currentCenter.`
     private void PlaceRoom(int roomIndex)
     {
         GameObject room = Instantiate(layoutRoom, currentCenter.position, currentCenter.rotation);
@@ -75,15 +65,29 @@ public class LevelGenerator : MonoBehaviour
             rooms.Add(room);
     }
 
-    private Vector3 ChooseCenter(Vector3 currentCenter, int tries)
+    // Choose a new room center based on the current.
+    private Vector3 ChooseCenter(Vector3 currentCenter)
     {
-        if (tries < 0)
-        {
-            throw new CouldNotGenerateLevelException("Ran out of tries placing room.");
-        }
-
         CardinalDirection next = ChooseNextDirection();        
 
+        Vector3 dir = MoveInCardinalDirection(next);
+
+        Vector3 nextCenter = currentCenter;
+
+        // Keep going in this direction even if we have to pass through rooms to do it.
+        do
+        {
+            nextCenter += dir;
+        }
+        while (Physics2D.OverlapCircle(nextCenter, 0.2f, roomLayoutCollider));
+
+        return nextCenter;
+    }
+
+    // Convert a cardinal direction to a vector that translates
+    // to a room center in that direction.
+    private Vector3 MoveInCardinalDirection(CardinalDirection next)
+    {
         float xOffset = 0f, yOffset = 0f;
         switch (next)
         {
@@ -100,17 +104,10 @@ public class LevelGenerator : MonoBehaviour
                 xOffset = -horizontalDistanceBetweenRooms;
                 break;
         }
-
-        Vector3 nextCenter = currentCenter + new Vector3(xOffset, yOffset, 0f);
-
-        if (Physics2D.OverlapCircle(nextCenter, 0.2f, roomLayoutCollider))
-        {
-            return ChooseCenter(currentCenter, tries - 1);
-        }
-
-        return nextCenter;
+        return new Vector3(xOffset, yOffset, 0f);
     }
 
+    // Randomly pick a cardinal direction to head in.
     private CardinalDirection ChooseNextDirection()
     {
         return (CardinalDirection)Random.Range(
@@ -119,23 +116,9 @@ public class LevelGenerator : MonoBehaviour
            );
     }
 
+    // Restart level generation by reloading this scene.
     private static void ResetLevelGeneration()
     {
         SceneManager.LoadScene("Generation Test");
     }
-}
-
-[Serializable]
-public class CouldNotGenerateLevelException : Exception
-{
-    public CouldNotGenerateLevelException()
-    { }
-
-    public CouldNotGenerateLevelException(string message)
-        : base(message)
-    { }
-
-    public CouldNotGenerateLevelException(string message, Exception innerException)
-        : base(message, innerException)
-    { }
 }
