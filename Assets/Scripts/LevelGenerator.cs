@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -16,6 +17,8 @@ public class LevelGenerator : MonoBehaviour
     public LayerMask roomLayoutCollider;
 
     public int numTriesToPlaceRoom;
+
+    private List<GameObject> rooms = new List<GameObject>();
 
     private int numRooms;
     private enum CardinalDirection { North, East, South, West };    
@@ -68,6 +71,8 @@ public class LevelGenerator : MonoBehaviour
             room.GetComponent<SpriteRenderer>().color = startRoomColor;
         else if (roomIndex == numRooms - 1)
             room.GetComponent<SpriteRenderer>().color = endRoomColor;
+        else
+            rooms.Add(room);
     }
 
     private Vector3 ChooseCenter(Vector3 currentCenter, int tries)
