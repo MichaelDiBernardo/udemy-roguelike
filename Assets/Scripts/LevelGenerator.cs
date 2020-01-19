@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -11,6 +13,10 @@ public class LevelGenerator : MonoBehaviour
 
     public Transform currentCenter;
 
+    public LayerMask roomLayoutCollider;
+
+    public int numTriesToPlaceRoom;
+
     private int numRooms;
     private enum CardinalDirection { North, East, South, West };    
 
@@ -21,13 +27,36 @@ public class LevelGenerator : MonoBehaviour
 
     private void Start()
     {        
+        GenerateLevel();
+    }
+
+    private void GenerateLevel()
+    {
+        Debug.Log("Starting level generation!");
+
         PlaceRoom(0);
 
         for (int i = 1; i < numRooms; i++)
+        {            
+            try
+            {
+                Vector3 nextCenter = ChooseCenter(currentCenter.position, numTriesToPlaceRoom);
+                currentCenter.position = nextCenter;
+                PlaceRoom(i);
+            }
+            catch (CouldNotGenerateLevelException)
+            {
+                Debug.Log("Restarting level generation...");
+                ResetLevelGeneration();
+            }             
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.R))
         {
-            Vector3 nextCenter = ChooseCenter(currentCenter.position);
-            currentCenter.position = nextCenter;            
-            PlaceRoom(i);
+            ResetLevelGeneration();
         }
     }
 
@@ -41,8 +70,13 @@ public class LevelGenerator : MonoBehaviour
             room.GetComponent<SpriteRenderer>().color = endRoomColor;
     }
 
-    private Vector3 ChooseCenter(Vector3 currentCenter)
+    private Vector3 ChooseCenter(Vector3 currentCenter, int tries)
     {
+        if (tries < 0)
+        {
+            throw new CouldNotGenerateLevelException("Ran out of tries placing room.");
+        }
+
         CardinalDirection next = ChooseNextDirection();        
 
         float xOffset = 0f, yOffset = 0f;
@@ -62,7 +96,14 @@ public class LevelGenerator : MonoBehaviour
                 break;
         }
 
-        return currentCenter + new Vector3(xOffset, yOffset, 0f);
+        Vector3 nextCenter = currentCenter + new Vector3(xOffset, yOffset, 0f);
+
+        if (Physics2D.OverlapCircle(nextCenter, 0.2f, roomLayoutCollider))
+        {
+            return ChooseCenter(currentCenter, tries - 1);
+        }
+
+        return nextCenter;
     }
 
     private CardinalDirection ChooseNextDirection()
@@ -72,4 +113,24 @@ public class LevelGenerator : MonoBehaviour
                (int)CardinalDirection.West + 1
            );
     }
+
+    private static void ResetLevelGeneration()
+    {
+        SceneManager.LoadScene("Generation Test");
+    }
+}
+
+[Serializable]
+public class CouldNotGenerateLevelException : Exception
+{
+    public CouldNotGenerateLevelException()
+    { }
+
+    public CouldNotGenerateLevelException(string message)
+        : base(message)
+    { }
+
+    public CouldNotGenerateLevelException(string message, Exception innerException)
+        : base(message, innerException)
+    { }
 }
