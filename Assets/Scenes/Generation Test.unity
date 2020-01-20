@@ -244,6 +244,22 @@ MonoBehaviour:
   roomLayoutCollider:
     serializedVersion: 2
     m_Bits: 32768
+  RoomOutlines:
+    N: {fileID: 899873746479565303, guid: 0d74be839790345cabbcd8df4ff05e16, type: 3}
+    E: {fileID: 1078813365502695212, guid: 8206a7afe67004f19a2317154061f8e6, type: 3}
+    S: {fileID: 3797869922939872883, guid: 474d9659c49aa46058946b78c01b8180, type: 3}
+    W: {fileID: 7784230354191606023, guid: 61cc6380b2bf74821a4eb5c0f28b0e52, type: 3}
+    ESW: {fileID: 8002761812283140668, guid: b0eaa495b4a51438297b4ae051360f6e, type: 3}
+    EW: {fileID: 5765976029625707362, guid: 625a8d09eb8a24c939728b340ee5da02, type: 3}
+    NE: {fileID: 1361286578083393316, guid: b901bed553bee42a388bd920e8c0a559, type: 3}
+    NES: {fileID: 3850952966786075492, guid: 6ad659c37c7964f3ea5f69c009e42a56, type: 3}
+    NESW: {fileID: 3477017918936417079, guid: 9127b7f8e049247249f9b07c5e1b7f7c, type: 3}
+    NEW: {fileID: 790563050916703531, guid: c8c292ee4e07f4c0cb00841e9807eaf8, type: 3}
+    NS: {fileID: 2337388663671221280, guid: 40858402b67cc47afa262dd3a533374a, type: 3}
+    NSW: {fileID: 8090284493272720453, guid: de23763c408434f8cab20a03e564e6c2, type: 3}
+    NW: {fileID: 5687662184287322766, guid: a2f153ce413a74100aa6cc1879f76c1a, type: 3}
+    SE: {fileID: 1879598173282397947, guid: c2ccb3fa70baa4258b354ef7d5835eea, type: 3}
+    SW: {fileID: 1832050085718592065, guid: 9c69c7b9d506b42dfb430662600a8b37, type: 3}
 --- !u!4 &258883408
 Transform:
   m_ObjectHideFlags: 0

@@ -15,6 +15,8 @@ public class LevelGenerator : MonoBehaviour
     public Transform currentCenter;
 
     public LayerMask roomLayoutCollider;
+
+    public Outlines RoomOutlines;
    
     // A list of all the rooms except the start and end rooms.
     private List<GameObject> rooms = new List<GameObject>();
@@ -121,4 +123,10 @@ public class LevelGenerator : MonoBehaviour
     {
         SceneManager.LoadScene("Generation Test");
     }
+}
+
+[Serializable]
+public class Outlines
+{
+    public GameObject N, E, S, W, ESW, EW, NE, NES, NESW, NEW, NS, NSW, NW, SE, SW;
 }
