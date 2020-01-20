@@ -25,28 +25,6 @@ public class LevelGenerator : MonoBehaviour
 
     private enum Dir { N = 0x1, E = 0x2, S = 0x4, W = 0x8 };
 
-    // Todo: I could do all of this with just Dir and bitwise ops.
-    // When I first wrote this, I didn't realize enums in C# were ever allowed
-    // to have a value that wasn't explicitly defined.
-    private enum ExitType
-    {        
-        N = Dir.N,
-        E = Dir.E,
-        S = Dir.S,
-        W = Dir.W,
-        ESW = Dir.E | Dir.S | Dir.W,
-        EW = Dir.E | Dir.W,
-        NE = Dir.N | Dir.E,
-        NES = Dir.N | Dir.E | Dir.S,
-        NESW = Dir.N | Dir.E | Dir.S | Dir.W,
-        NEW = Dir.N | Dir.E | Dir.W,
-        NS = Dir.N | Dir.S,
-        NSW = Dir.N | Dir.S | Dir.W,
-        NW = Dir.N | Dir.W,
-        SE = Dir.S | Dir.E,
-        SW = Dir.S | Dir.W
-    }
-
     private void Awake()
     {
         numRooms = Random.Range(numRoomsMin, numRoomsMax + 1);
@@ -162,59 +140,56 @@ public class LevelGenerator : MonoBehaviour
     // Given a room, place an outline that creates exits to all the surrounding rooms.
     private void PlaceOutline(GameObject room)
     {
-        Vector3 roomCenter = room.transform.position;
-        // TODO: Figure out how to mishmash bitwise operators on two different enum types.
-        int exitType = 0;
+        Vector3 roomCenter = room.transform.position;        
+        Dir exitType = 0;
 
         foreach (Dir dir in Enum.GetValues(typeof(Dir)))
         {
             Vector3 pointToCheck = roomCenter + MoveInCardinalDirection(dir);
             if (RoomExistsAt(pointToCheck))
-                exitType |= (int)dir;                
+                exitType |= dir;                
         }
-        
-        ExitType exitToPick = (ExitType)exitType;
-        GameObject outline = PickOutline(exitToPick);
+                
+        GameObject outline = PickOutline(exitType);
         Instantiate(outline, room.transform.position, room.transform.rotation);
     }
 
     // Returns the outline configured on this level generator for this type of exit.    
-    private GameObject PickOutline(ExitType exitToPick)
+    private GameObject PickOutline(Dir exitToPick)
     {
         // Todo: Would be nice to do this with a map
-        // Todo: Either way, would be nice if the outlines class itself did this, but didn't
-        // feel like sharing the ExitType enum out of the LevelGenerator. 
-        switch(exitToPick)
+        // Todo: Either way, would be nice if the outlines class itself did this
+        switch (exitToPick)
         {
-            case ExitType.N:
+            case Dir.N:
                 return RoomOutlines.N;
-            case ExitType.E:
+            case Dir.E:
                 return RoomOutlines.E;
-            case ExitType.S:
+            case Dir.S:
                 return RoomOutlines.S;
-            case ExitType.W:
+            case Dir.W:
                 return RoomOutlines.W;
-            case ExitType.ESW:
+            case Dir.E | Dir.S | Dir.W:
                 return RoomOutlines.ESW;
-            case ExitType.EW:
+            case Dir.E | Dir.W:
                 return RoomOutlines.EW;
-            case ExitType.NE:
+            case Dir.N | Dir.E:
                 return RoomOutlines.NE;
-            case ExitType.NES:
+            case Dir.N | Dir.E | Dir.S:
                 return RoomOutlines.NES;
-            case ExitType.NESW:
+            case Dir.N | Dir.E | Dir.S | Dir.W:
                 return RoomOutlines.NESW;
-            case ExitType.NEW:
+            case Dir.N | Dir.E | Dir.W:
                 return RoomOutlines.NEW;
-            case ExitType.NS:
+            case Dir.N | Dir.S:
                 return RoomOutlines.NS;
-            case ExitType.NSW:
+            case Dir.N | Dir.S | Dir.W:
                 return RoomOutlines.NSW;
-            case ExitType.NW:
+            case Dir.N | Dir.W:
                 return RoomOutlines.NW;
-            case ExitType.SE:
+            case Dir.S | Dir.E:
                 return RoomOutlines.SE;
-            case ExitType.SW:
+            case Dir.S | Dir.W:
                 return RoomOutlines.SW;
         }
         throw new ArgumentException(
