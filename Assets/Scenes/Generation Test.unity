@@ -173,7 +173,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 30
+  orthographic size: 300
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -234,8 +234,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layoutRoom: {fileID: 8306770773668155663, guid: 3e55e2735228d4ed1b6b7ba0c8ea25dd,
     type: 3}
-  numRoomsMin: 5
-  numRoomsMax: 5
+  numRoomsMin: 10
+  numRoomsMax: 12
   startRoomColor: {r: 0.023139905, g: 0.9811321, b: 0.9529933, a: 1}
   endRoomColor: {r: 1, g: 0.0047169924, b: 0.20092303, a: 1}
   horizontalDistanceBetweenRooms: 18

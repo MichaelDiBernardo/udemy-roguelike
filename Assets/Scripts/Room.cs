@@ -75,6 +75,9 @@ public class Room : MonoBehaviour
 
     private bool PlayerIsHere()
     {
+        // TODO: Awkward spot with level generation, remove later.
+        if (LevelManager.instance == null)
+            return false;
         return LevelManager.instance.CurrentRoom == this;
     }
 }
