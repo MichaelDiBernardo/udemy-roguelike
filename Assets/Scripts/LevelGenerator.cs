@@ -41,10 +41,12 @@ public class LevelGenerator : MonoBehaviour
    
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKey(KeyCode.R))
         {
             ResetLevelGeneration();
         }
+#endif
     }
 
     private void GenerateLevel()

@@ -32,9 +32,6 @@ public class Room : MonoBehaviour
 
     public bool PlayerIsHere()
     {
-        // TODO: Awkward spot with level generation, remove later.
-        if (LevelManager.instance == null)
-            return false;
         return LevelManager.instance.CurrentRoom == this;
     }
 
