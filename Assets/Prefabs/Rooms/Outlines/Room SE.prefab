@@ -1318,7 +1318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b6c0bfa5aaf84b46b68336cdcf68d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsCloseOnEnter: 1
+  doorsCloseOnEnter: 0
   doors:
   - {fileID: 1879598171502441113}
   - {fileID: 1879598171336778414}

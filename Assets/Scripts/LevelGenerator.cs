@@ -16,11 +16,15 @@ public class LevelGenerator : MonoBehaviour
 
     public LayerMask roomLayoutCollider;
 
-    public Outlines RoomOutlines;
+    public Outlines RoomOutlinesMap;
+
+    public RoomCenter startRoom, endRoom;
+    public RoomCenter[] roomOptions;
    
     // A list of all the rooms. The start room is at the beginning of the list,
     // and the end room is at the end of the list.
     private List<GameObject> rooms = new List<GameObject>();
+    private List<GameObject> outlines = new List<GameObject>();
     private int numRooms;
 
     private enum Dir { N = 0x1, E = 0x2, S = 0x4, W = 0x8 };
@@ -47,8 +51,9 @@ public class LevelGenerator : MonoBehaviour
     {
         PlaceRooms();
         PlaceOutlines();
+        PlaceCenters();
     }
-  
+
     private void PlaceRooms()
     {
         PlaceRoom(0);
@@ -151,7 +156,9 @@ public class LevelGenerator : MonoBehaviour
         }
                 
         GameObject outline = PickOutline(exitType);
-        Instantiate(outline, room.transform.position, room.transform.rotation);
+        GameObject generated = Instantiate(outline, room.transform.position, room.transform.rotation);
+        outlines.Add(generated);
+
     }
 
     // Returns the outline configured on this level generator for this type of exit.    
@@ -162,38 +169,70 @@ public class LevelGenerator : MonoBehaviour
         switch (exitToPick)
         {
             case Dir.N:
-                return RoomOutlines.N;
+                return RoomOutlinesMap.N;
             case Dir.E:
-                return RoomOutlines.E;
+                return RoomOutlinesMap.E;
             case Dir.S:
-                return RoomOutlines.S;
+                return RoomOutlinesMap.S;
             case Dir.W:
-                return RoomOutlines.W;
+                return RoomOutlinesMap.W;
             case Dir.E | Dir.S | Dir.W:
-                return RoomOutlines.ESW;
+                return RoomOutlinesMap.ESW;
             case Dir.E | Dir.W:
-                return RoomOutlines.EW;
+                return RoomOutlinesMap.EW;
             case Dir.N | Dir.E:
-                return RoomOutlines.NE;
+                return RoomOutlinesMap.NE;
             case Dir.N | Dir.E | Dir.S:
-                return RoomOutlines.NES;
+                return RoomOutlinesMap.NES;
             case Dir.N | Dir.E | Dir.S | Dir.W:
-                return RoomOutlines.NESW;
+                return RoomOutlinesMap.NESW;
             case Dir.N | Dir.E | Dir.W:
-                return RoomOutlines.NEW;
+                return RoomOutlinesMap.NEW;
             case Dir.N | Dir.S:
-                return RoomOutlines.NS;
+                return RoomOutlinesMap.NS;
             case Dir.N | Dir.S | Dir.W:
-                return RoomOutlines.NSW;
+                return RoomOutlinesMap.NSW;
             case Dir.N | Dir.W:
-                return RoomOutlines.NW;
+                return RoomOutlinesMap.NW;
             case Dir.S | Dir.E:
-                return RoomOutlines.SE;
+                return RoomOutlinesMap.SE;
             case Dir.S | Dir.W:
-                return RoomOutlines.SW;
+                return RoomOutlinesMap.SW;
         }
         throw new ArgumentException(
             string.Format("{0} is not a valid exit type.", exitToPick));
+    }
+
+    private void PlaceCenters()
+    {
+        for(int i = 0; i < outlines.Count; i++)
+        {
+            GameObject outline = outlines[i];
+
+            if (i == 0)
+            {
+                AttachCenterToOutline(startRoom, outline);
+            }
+            else if (i == numRooms - 1)
+            {
+                AttachCenterToOutline(endRoom, outline);
+            }
+            else
+            {
+                int centerIndex = Random.Range(0, roomOptions.Length);
+                AttachCenterToOutline(roomOptions[centerIndex], outline);
+            }
+        }
+    }
+
+    private void AttachCenterToOutline(RoomCenter roomCenter, GameObject outline)
+    {
+        RoomCenter newCenter = Instantiate(
+            roomCenter,
+            outline.transform.position,
+            outline.transform.rotation
+        );
+        newCenter.theRoom = outline.GetComponent<Room>();
     }
 
     // Restart level generation by reloading this scene.

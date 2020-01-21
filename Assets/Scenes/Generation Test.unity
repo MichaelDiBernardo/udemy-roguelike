@@ -173,7 +173,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 300
+  orthographic size: 50
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -244,7 +244,7 @@ MonoBehaviour:
   roomLayoutCollider:
     serializedVersion: 2
     m_Bits: 32768
-  RoomOutlines:
+  RoomOutlinesMap:
     N: {fileID: 899873746479565303, guid: 0d74be839790345cabbcd8df4ff05e16, type: 3}
     E: {fileID: 1078813365502695212, guid: 8206a7afe67004f19a2317154061f8e6, type: 3}
     S: {fileID: 3797869922939872883, guid: 474d9659c49aa46058946b78c01b8180, type: 3}
@@ -260,6 +260,12 @@ MonoBehaviour:
     NW: {fileID: 5687662184287322766, guid: a2f153ce413a74100aa6cc1879f76c1a, type: 3}
     SE: {fileID: 1879598173282397947, guid: c2ccb3fa70baa4258b354ef7d5835eea, type: 3}
     SW: {fileID: 1832050085718592065, guid: 9c69c7b9d506b42dfb430662600a8b37, type: 3}
+  startRoom: {fileID: 5011304160437266990, guid: 39c5b98aed3194f2ea185ded304520f6,
+    type: 3}
+  endRoom: {fileID: 9089584017835334265, guid: 1e1544dbb93a143d5aec2f8508cea8ec, type: 3}
+  roomOptions:
+  - {fileID: 869745391755674459, guid: bee607f37c24e45e19d27160db4c2522, type: 3}
+  - {fileID: 5011304160437266990, guid: 39c5b98aed3194f2ea185ded304520f6, type: 3}
 --- !u!4 &258883408
 Transform:
   m_ObjectHideFlags: 0

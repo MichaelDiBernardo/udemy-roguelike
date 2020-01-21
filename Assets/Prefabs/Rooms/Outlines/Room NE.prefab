@@ -1069,14 +1069,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b6c0bfa5aaf84b46b68336cdcf68d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsCloseOnEnter: 1
-  openWhenEnemiesClear: 1
+  doorsCloseOnEnter: 0
   doors:
   - {fileID: 1361286578456225263}
   - {fileID: 1361286577522677721}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &1361286578358646053
 GameObject:
   m_ObjectHideFlags: 0
