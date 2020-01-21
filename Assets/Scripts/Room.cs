@@ -5,34 +5,9 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public bool doorsCloseOnEnter;
-    public bool openWhenEnemiesClear;
+    public bool doorsCloseOnEnter;    
 
     public GameObject[] doors;
-
-    public List<GameObject> enemies = new List<GameObject>();    
-
-    void Update()
-    {
-        if (!(PlayerIsHere() && openWhenEnemiesClear))
-        {
-            return;
-        }
-                
-        for (int i=0; i < enemies.Count; i++)
-        {
-            if (enemies[i] == null)
-            {
-                enemies.RemoveAt(i);
-                i--;
-            }
-        }
-
-        if (enemies.Count == 0)
-        {
-            RemoveDoors();
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -44,7 +19,24 @@ public class Room : MonoBehaviour
         LevelManager.instance.CurrentRoom = this;
         MoveCameraToHere();
         MaybeActivateDoors();
-    }   
+    }
+    
+    public void RemoveDoors()
+    {
+        foreach (var door in doors)
+        {
+            door.SetActive(false);
+        }
+        doorsCloseOnEnter = false;
+    }
+
+    public bool PlayerIsHere()
+    {
+        // TODO: Awkward spot with level generation, remove later.
+        if (LevelManager.instance == null)
+            return false;
+        return LevelManager.instance.CurrentRoom == this;
+    }
 
     private void MaybeActivateDoors()
     {
@@ -64,20 +56,5 @@ public class Room : MonoBehaviour
         CameraController.instance.SetTarget(transform.position);
     }
 
-    private void RemoveDoors()
-    {
-        foreach (var door in doors)
-        {
-            door.SetActive(false);
-        }
-        doorsCloseOnEnter = false;
-    }
 
-    private bool PlayerIsHere()
-    {
-        // TODO: Awkward spot with level generation, remove later.
-        if (LevelManager.instance == null)
-            return false;
-        return LevelManager.instance.CurrentRoom == this;
-    }
 }
