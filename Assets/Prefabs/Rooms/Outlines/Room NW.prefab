@@ -919,7 +919,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5687662183924056865}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.5, y: 0, z: 0}
+  m_LocalPosition: {x: -8.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5687662185254480741}
@@ -1074,13 +1074,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorsCloseOnEnter: 1
-  openWhenEnemiesClear: 1
   doors:
   - {fileID: 5687662185147558656}
   - {fileID: 5687662183924056865}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &5687662185006735891
 GameObject:
   m_ObjectHideFlags: 0
