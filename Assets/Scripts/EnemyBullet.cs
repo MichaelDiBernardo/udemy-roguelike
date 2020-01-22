@@ -3,6 +3,7 @@
 public class EnemyBullet : MonoBehaviour
 {
     public float speed;
+    public int damage = 1;
     private Vector3 direction;
 
     // Start is called before the first frame update
@@ -24,7 +25,7 @@ public class EnemyBullet : MonoBehaviour
         bool destroyMe = true;
         if (other.CompareTag("Player"))
         {
-            PlayerHealthController.instance.DamagePlayer();
+            PlayerHealthController.instance.DamagePlayer(damage);
             if (PlayerController.instance.IsDashing)
             {
                 destroyMe = false;

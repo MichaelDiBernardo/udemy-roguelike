@@ -2,10 +2,8 @@
 
 // Base class for enemy movement scripts that takes care of things
 // that every monster needs to do.
-public abstract class EnemyMover : MonoBehaviour
-{
-    public SpriteRenderer theBody;
-
+public abstract class EnemyMover : Sleeper
+{    
     protected Rigidbody2D _physics;
     private Animator _animator;
 
@@ -18,7 +16,7 @@ public abstract class EnemyMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!theBody.isVisible || !PlayerController.instance.gameObject.activeInHierarchy)
+        if (IsAsleep)
         {
             _physics.velocity = Vector2.zero;
             return;

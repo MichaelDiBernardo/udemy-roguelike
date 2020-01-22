@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 
-public class EnemyShooter : MonoBehaviour
+public class EnemyShooter : Sleeper
 {
     public bool shouldShoot;
     public float fireRate;
     public float shootRange;
-
-    public SpriteRenderer theBody;
+    
     public GameObject bullet;
     public Transform muzzlePoint;
 
@@ -20,7 +19,7 @@ public class EnemyShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!shouldShoot || !theBody.isVisible)
+        if (!shouldShoot || IsAsleep)
         {
             return;
         }
@@ -32,7 +31,6 @@ public class EnemyShooter : MonoBehaviour
 
         if (playerDistance > shootRange)
         {
-            _shotTimer.Reset();
             return;
         }
 

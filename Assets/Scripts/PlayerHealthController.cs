@@ -35,14 +35,14 @@ public class PlayerHealthController : MonoBehaviour
         }
     }
 
-    public void DamagePlayer()
+    public void DamagePlayer(int amount)
     {
         if (isInvulnerable)
         {
             return;
         }
 
-        currentHealth--;
+        currentHealth = Mathf.Max(0, currentHealth - amount);
 
         if (currentHealth <= 0)
         {

@@ -2,43 +2,33 @@
 
 public class DamagePlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    public int damageAmount = 1;
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
-        doTrapEffect(other);
+        TryToHurt(other);
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        doTrapEffect(other);
+        TryToHurt(other);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        doTrapEffect(other.collider);
+        TryToHurt(other.collider);
     }
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        doTrapEffect(other.collider);
+        TryToHurt(other.collider);
     }
 
-    private static void doTrapEffect(Collider2D other)
+    private void TryToHurt(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            PlayerHealthController.instance.DamagePlayer();
+            PlayerHealthController.instance.DamagePlayer(damageAmount);
         }
     }
 }
