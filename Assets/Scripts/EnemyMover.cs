@@ -20,13 +20,14 @@ public abstract class EnemyMover : MonoBehaviour
     {
         if (!theBody.isVisible || !PlayerController.instance.gameObject.activeInHierarchy)
         {
-            _physics.velocity = Vector3.zero;
+            _physics.velocity = Vector2.zero;
             return;
-        }        
-        _animator.SetBool("isMoving", MoveThisFrame());        
-    }
+        }
 
-    // Return true if the mover is moving this frame, false otherwise.
-    // This determines when animation happens.
-    protected abstract bool MoveThisFrame();
+        MoveThisFrame();
+
+        _animator.SetBool("isMoving", _physics.velocity != Vector2.zero);
+    }
+   
+    protected abstract void MoveThisFrame();
 }

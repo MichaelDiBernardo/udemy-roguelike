@@ -1,27 +1,29 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyWander : EnemyMover
 {
     public float wanderSpeedMin, wanderSpeedMax;
     public float wanderTimeMin, wanderTimeMax;
-    public float idleTimeMin, idleTimeMax;
-    private bool moving;
+    public float idleTimeMin, idleTimeMax;    
     
     void Start()
     {
         StartCoroutine(Wander());
     }
 
-    protected override bool MoveThisFrame()
+    protected override void MoveThisFrame()
     {
-        return moving;
+        // Do nothing: The coroutine does everything.
+        // Which is bad, I know.
+        // This means the coroutine does stuff and a frame later or so, the base class might turf the movement.
+        // This means that offscreen wanderers are probably moving 1 frame and stopping once in a while. Oh well.
+        // Todo: Fix this.
     }
 
     private IEnumerator Wander()
     {
-        float pauseBeforeStarting = Random.Range(0.2f, 2f);
+        float pauseBeforeStarting = Random.Range(0.2f, 0.5f);
         yield return new WaitForSeconds(pauseBeforeStarting);
 
         while(true)
@@ -32,13 +34,11 @@ public class EnemyWander : EnemyMover
 
             _physics.velocity = wanderDirection.normalized * moveSpeed;
             
-            float wanderTime = Random.Range(wanderTimeMin, wanderTimeMax);
-            moving = true;
+            float wanderTime = Random.Range(wanderTimeMin, wanderTimeMax);            
             yield return new WaitForSeconds(wanderTime);
 
             float idleTime = Random.Range(wanderTimeMin, wanderTimeMax);
-            _physics.velocity = Vector3.zero;
-            moving = false;
+            _physics.velocity = Vector3.zero;            
             yield return new WaitForSeconds(idleTime);
         }
     }
