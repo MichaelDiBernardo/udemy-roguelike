@@ -8,6 +8,7 @@ public class RoomCenter : MonoBehaviour
 
     public List<GameObject> enemies = new List<GameObject>();
 
+    [HideInInspector]
     public Room theRoom;
 
     // Start is called before the first frame update

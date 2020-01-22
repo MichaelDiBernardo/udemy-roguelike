@@ -3,7 +3,7 @@
 public class EnemyChaser : EnemyMover
 {
     public float moveSpeed;
-    public float rangeToChasePlayer;
+    public float rangeToChasePlayer;    
 
     protected override bool MoveThisFrame()
     {
@@ -12,7 +12,7 @@ public class EnemyChaser : EnemyMover
 
         if (playerDir.magnitude <= rangeToChasePlayer)
         {
-            _physics.velocity = playerDir.normalized * moveSpeed;
+            _physics.velocity = playerDir.normalized * moveSpeed;            
             return true;
         }
         else
