@@ -90,10 +90,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3010017021310050793}
-  - component: {fileID: 3010017021310050798}
   - component: {fileID: 3010017021310050799}
   - component: {fileID: 3010017021310050796}
   - component: {fileID: 3010017021310050792}
+  - component: {fileID: 3010017021310050798}
+  - component: {fileID: 7526106339834408305}
+  - component: {fileID: 2100723101518728491}
   m_Layer: 10
   m_Name: Enemy - Skeleton
   m_TagString: Enemy
@@ -117,36 +119,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3010017021310050798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3010017021310050797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a7bfa8f22a24bd9ad9741eda5bbad1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  physics: {fileID: 3010017021310050799}
-  animator: {fileID: 3010017021310050792}
-  deathSprites:
-  - {fileID: 2563421510259255344, guid: 3bd5602350b32452f8f69c477197a0a5, type: 3}
-  - {fileID: 4909173474914927614, guid: 41f020d0a5fea44a4b344ae46c76003b, type: 3}
-  - {fileID: 2938155392684464167, guid: e19c1af1c511c4c8b8f19be137136084, type: 3}
-  - {fileID: 6420521339403482032, guid: 142982e8248b649c1bf430bd1d62a96e, type: 3}
-  damageEffect: {fileID: 5249991076012963361, guid: 1423e99fd3883475a802f09bb951820b,
-    type: 3}
-  moveSpeed: 3
-  rangeToChasePlayer: 7
-  health: 150
-  shouldShoot: 1
-  fireRate: 0.5
-  shootRange: 10
-  bullet: {fileID: 5353859373205962889, guid: c5d803ec9e70f453b8ec43380252c5fc, type: 3}
-  muzzlePoint: {fileID: 3678814392878337212}
-  theBody: {fileID: 3010017020894321734}
 --- !u!50 &3010017021310050799
 Rigidbody2D:
   serializedVersion: 4
@@ -213,6 +185,59 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3010017021310050798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3010017021310050797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a7bfa8f22a24bd9ad9741eda5bbad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathSprites:
+  - {fileID: 2563421510259255344, guid: 3bd5602350b32452f8f69c477197a0a5, type: 3}
+  - {fileID: 4909173474914927614, guid: 41f020d0a5fea44a4b344ae46c76003b, type: 3}
+  - {fileID: 2938155392684464167, guid: e19c1af1c511c4c8b8f19be137136084, type: 3}
+  - {fileID: 6420521339403482032, guid: 142982e8248b649c1bf430bd1d62a96e, type: 3}
+  damageEffect: {fileID: 5249991076012963361, guid: 1423e99fd3883475a802f09bb951820b,
+    type: 3}
+  health: 150
+--- !u!114 &7526106339834408305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3010017021310050797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29032399722ac47768cb07592d8dc138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  rangeToChasePlayer: 8
+  theBody: {fileID: 3010017020894321734}
+--- !u!114 &2100723101518728491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3010017021310050797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 128907d89e9be405f8ade70676e13655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldShoot: 1
+  fireRate: 0.5
+  shootRange: 10
+  theBody: {fileID: 3010017020894321734}
+  bullet: {fileID: 5353859373205962889, guid: c5d803ec9e70f453b8ec43380252c5fc, type: 3}
+  muzzlePoint: {fileID: 3678814392878337212}
 --- !u!1 &7061356900314841166
 GameObject:
   m_ObjectHideFlags: 0

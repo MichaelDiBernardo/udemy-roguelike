@@ -107,4 +107,3 @@ MonoBehaviour:
   endRoom: {fileID: 9089584017835334265, guid: 1e1544dbb93a143d5aec2f8508cea8ec, type: 3}
   roomOptions:
   - {fileID: 869745391755674459, guid: bee607f37c24e45e19d27160db4c2522, type: 3}
-  - {fileID: 5011304160437266990, guid: 39c5b98aed3194f2ea185ded304520f6, type: 3}
