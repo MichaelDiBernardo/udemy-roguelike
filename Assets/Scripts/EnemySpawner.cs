@@ -19,7 +19,7 @@ public class EnemySpawner : Sleeper
     void Update()
     {
         if (IsAwake && _spawnTimer.CheckThisFrame())
-        {
+        {   
             Instantiate(thingToSpawn, transform.position, transform.rotation);
         }
     }
