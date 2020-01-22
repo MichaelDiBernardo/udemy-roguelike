@@ -69,7 +69,7 @@ SpriteRenderer:
   m_SortingLayerID: 1122218181
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7844560889915226194, guid: 02027016afbc5d544ab92ba819bc8094,
+  m_Sprite: {fileID: -8421458170528590454, guid: 02027016afbc5d544ab92ba819bc8094,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 3679603414324051482}
   - component: {fileID: 2912490445602161516}
   m_Layer: 10
-  m_Name: Enemy - Runner 1
+  m_Name: Enemy - Runner 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   - {fileID: 6420521339403482032, guid: 142982e8248b649c1bf430bd1d62a96e, type: 3}
   damageEffect: {fileID: 5249991076012963361, guid: 1423e99fd3883475a802f09bb951820b,
     type: 3}
-  health: 100
+  health: 200
 --- !u!114 &3679603414324051482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theBody: {fileID: 572640777892228983}
   shouldShoot: 1
-  fireRate: 0.4
+  fireRate: 0.2
   shootRange: 10
   bullet: {fileID: 5353859373205962889, guid: 2fcd76ece370c43598e7c90ba1813f51, type: 3}
   muzzlePoint: {fileID: 2106014993554734989}

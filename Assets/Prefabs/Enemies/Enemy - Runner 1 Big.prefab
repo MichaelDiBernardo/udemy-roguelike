@@ -251,7 +251,7 @@ MonoBehaviour:
   shouldShoot: 1
   fireRate: 0.3
   shootRange: 12
-  bullet: {fileID: 5353859373205962889, guid: c5d803ec9e70f453b8ec43380252c5fc, type: 3}
+  bullet: {fileID: 5353859373205962889, guid: 2fcd76ece370c43598e7c90ba1813f51, type: 3}
   muzzlePoint: {fileID: 8639568180432271806}
 --- !u!114 &4806685123892282719
 MonoBehaviour:
