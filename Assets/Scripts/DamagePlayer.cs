@@ -29,6 +29,12 @@ public class DamagePlayer : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerHealthController.instance.DamagePlayer(damageAmount);
+            OnDamagePlayer();
         }
+    }
+
+    protected virtual void OnDamagePlayer()
+    {
+
     }
 }
