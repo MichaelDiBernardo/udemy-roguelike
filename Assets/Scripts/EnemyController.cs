@@ -18,11 +18,15 @@ public class EnemyController : MonoBehaviour
             return;          
         }
 
+        AudioManager.instance.PlaySFX(SoundEffect.EnemyDeath);
+        Destroy(gameObject);
+
+        if (deathSprites.Length == 0)
+            return;
+
         int splatterIndex = Random.Range(0, deathSprites.Length);
         int rotation = Random.Range(0, 4);
 
-        AudioManager.instance.PlaySFX(SoundEffect.EnemyDeath);
-        Destroy(gameObject);
         Instantiate(
             deathSprites[splatterIndex],
             transform.position,

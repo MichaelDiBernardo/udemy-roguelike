@@ -227,12 +227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a7bfa8f22a24bd9ad9741eda5bbad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathSprites:
-  - {fileID: 2563421510259255344, guid: 3bd5602350b32452f8f69c477197a0a5, type: 3}
-  - {fileID: 4909173474914927614, guid: 41f020d0a5fea44a4b344ae46c76003b, type: 3}
-  - {fileID: 2938155392684464167, guid: e19c1af1c511c4c8b8f19be137136084, type: 3}
-  - {fileID: 6420521339403482032, guid: 142982e8248b649c1bf430bd1d62a96e, type: 3}
-  damageEffect: {fileID: 5249991076012963361, guid: 1423e99fd3883475a802f09bb951820b,
+  deathSprites: []
+  damageEffect: {fileID: 6453490088278933014, guid: 1e63b53209f4c4ed1896f2fcbf93fd9e,
     type: 3}
   health: 50
 --- !u!114 &6991944518299267034
