@@ -6,7 +6,19 @@ public class EnemyController : MonoBehaviour
     public GameObject damageEffect;
     
     public int health;
-        
+
+    private void Update()
+    {
+        if (PlayerController.instance.transform.position.x < transform.position.x)
+        {
+            transform.localScale = Vector3.one;
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+    }
+
     public void DamageEnemy(int damage)
     {
         health -= damage;
